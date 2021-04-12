@@ -33,6 +33,7 @@ import GinCamera from './src/GinCamera';
 const App: () => Node = () => {
 
   const [filter, setFilter] = useState('NONE');
+  const [overlay, setOverlay] = useState('NONE');
 
   let windowHeight = Dimensions.get('window').height;
   let windowWidth = Dimensions.get('window').width;
@@ -53,6 +54,7 @@ const App: () => Node = () => {
     <View style={styles.container}>
       <GinCamera ref={cameraRef} style={{ height: windowHeight,width: windowWidth }}
         filter={filter}
+        overlay={overlay}
       />
       <View style={styles.controlOverlay}>
         <View style={styles.buttonContainer}>
@@ -81,6 +83,30 @@ const App: () => Node = () => {
         </View>
         <View style={styles.buttonContainer}>
           <Button style={styles.button}
+            onPress={()=>{
+              setOverlay("snap")
+            }}
+            title="猫">
+          </Button>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button style={styles.button}
+            onPress={()=>{
+              setOverlay("glasses5")
+            }}
+            title="メガネ">
+          </Button>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button style={styles.button}
+            onPress={()=>{
+              setOverlay("none")
+            }}
+            title="No Overlay">
+          </Button>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button style={styles.button}
             onPress={record}
             title="録画 ">
           </Button>
@@ -103,12 +129,12 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   buttonContainer: {
     width: Dimensions.get('window').width/2,
-    marginBottom: 20
+    marginBottom: 5
   }
 });
 
